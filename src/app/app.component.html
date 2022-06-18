@@ -1,0 +1,79 @@
+<div class="container">
+  <h1>Nid uploading with Ocr implementation system</h1>
+  
+  <div [hidden]="edited" class="card">
+    <div class="card-header">
+      Capture NID or Smart card
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm">
+          <div [hidden]="imgEdited" style="height: 200px; width: 200px; background-color: blue; display: block;"></div>
+          <img [hidden]="!imgEdited" [src]="imgURL" height="200" *ngIf="imgURL"><br><br>
+          <label class="form-label" for="customFile">NID Front Side</label><br><br>
+          <small  class="text-danger"  *ngIf="showMessage">{{showMessage}}</small>
+          <input class="form-control" #file type="file" accept='image/*' (change)="preview(file.files)" />
+        </div>
+        <div class="col-sm">
+          <div [hidden]="imgEdited1" style="height: 200px; width: 200px; background-color: blue; display: block;"></div>
+          <img [hidden]="!imgEdited1" [src]="imgURL1" height="200" *ngIf="imgURL1"><br><br>
+          <label class="form-label" for="customFile">NID Back Side</label><br><br>
+          <small  class="text-danger"  *ngIf="showMessage1">{{showMessage1}}</small>
+          <input class="form-control" #file1 type="file" accept='image/*' (change)="preview1(file1.files)" />
+        </div>        
+      </div>
+      <div class="row m-3">
+        <div class="col-5"></div>
+        <div class="col-4"><button type="button" class="btn btn-primary btn-lg" (click)="submit()" >Upload</button></div>
+        <div class="col-3"></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div [hidden]="!edited" class="card m-3" *ngIf="body != null || body != undefined">
+    <div class="card-header">
+      NID Information
+    </div>
+    <div class="card-body">   
+      <div class="row">
+        <div class="col-4">
+          <label class="form-label" for="customFile">Name(Bangla): </label>
+          <label class="form-label" for="customFile">{{body.bnName}}</label> <br><br>
+          <label class="form-label" for="customFile">Father Name: </label>
+          <label class="form-label" for="customFile">{{body.fatherName}}</label><br><br>
+          <label class="form-label" for="customFile">NID Number: </label>
+          <label class="form-label" for="customFile">{{body.nidNumber}}</label><br><br>
+          <label class="form-label" for="customFile">Address: </label>
+          <label class="form-label" for="customFile">{{body.address}}</label>
+        </div>
+        <div class="col-4">
+          <label class="form-label" for="customFile">Name(English): </label>
+          <label class="form-label" for="customFile">{{body.enName}}</label><br><br>
+          <label class="form-label" for="customFile">Mother Name: </label>
+          <label class="form-label" for="customFile">{{body.motherName}}</label>
+        </div>
+        <div class="col-3">
+          <label class="form-label" for="customFile">Date Of Birth: </label>
+          <label class="form-label" for="customFile">{{body.doB | date: 'dd/MM/yyyy'}}</label>
+        </div>
+        
+      </div>
+      
+      <div class="row m-3">
+        <div class="col-5"></div>
+        <div class="col-4"><button type="button" class="btn btn-primary  btn-lg" (click)="goToBack()" >Next</button></div>
+        <div class="col-3"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
